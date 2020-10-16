@@ -1,16 +1,11 @@
 package com.xuzx.jetpack.sample
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import androidx.databinding.library.baseAdapters.DataBinderMapperImpl
+import android.view.LayoutInflater
+import com.xuzx.common.base.BaseViewBindingActivity
 import com.xuzx.jetpack.sample.databinding.ActivityFirstBinding
 
-class FirstActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding: ActivityFirstBinding = ActivityFirstBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.textView
-    }
+class FirstActivity : BaseViewBindingActivity<ActivityFirstBinding>() {
+
+    override val inflate: (LayoutInflater) -> ActivityFirstBinding
+        get() = ActivityFirstBinding::inflate
 }

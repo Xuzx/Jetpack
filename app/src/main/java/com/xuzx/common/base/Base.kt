@@ -28,17 +28,15 @@ abstract class BaseDataBindingActivity<T : ViewDataBinding> : BaseActivity() {
     protected abstract fun initListener()
 }
 
-abstract class BaseViewBindingActivity<T : ViewBinding> : BaseActivity() {
-    /*protected val binding: T by lazy {
-        DataBindingUtil.inflate<T>(layoutInflater, layoutResId, null, false)
-    }*/
+abstract class BaseViewBindingActivity<T : ViewBinding> : AppCompatActivity() {
+    protected abstract val inflate: (LayoutInflater) -> T
 
-    lateinit var inflate: (LayoutInflater) -> T
+    protected val binding: T by lazy {
+        inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //mBinding = T()
-
-        //mBinding = DataBindingUtil.setContentView(this, getLayoutResId())
+        setContentView(binding.root)
     }
 }
